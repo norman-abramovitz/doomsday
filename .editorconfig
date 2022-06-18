@@ -1,0 +1,53 @@
+#
+# This is an editorconfig file. EditorConfig allows teams to have consistent
+# editor standards regardless of environment, tools or workflow.
+# Some editors have built-in support, some need a plugin, but nearly all can
+# work with EditorConfig in some way.
+#
+# See editorconfig.org for more details.
+#
+root = true
+
+#
+# Settings for the entire project, all files (think "default")
+#
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+trim_trailing_whitespace = true
+
+#
+# Specifically for HTML and friends
+#
+[{*.html,*.htm,*.xml,*.xhtml,*.dtd}]
+indent_style = space
+indent_size = 4
+
+#
+# CSS and friends
+#
+[{*.css,*.scss}]
+indent_style = space
+indent_size = 2
+
+#
+# For TypeScript, JavaScript
+#
+[{*.ts,*.js}]
+indent_style = tab
+indent_size = 4
+
+#
+# For Go code
+#
+[{*.go,go.mod}]
+indent_style = tab
+indent_size = 4
+
+#
+# For the project Makefile
+#
+[Makefile]
+indent_style = tab
+indent_size = 2
