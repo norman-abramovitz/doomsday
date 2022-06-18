@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WIP: Heatmap Mockup for Certificate Expiration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel='stylesheet' type='text/css' href="assets/css/main.css">
+</head>
+<body>
+    <div class="container mx-auto">
+        <div id="heatmap-description">
+            <h1 class="text-xl text-bold text-black">Certificate Heatmap</h1>
+            <p>
+                This timeline spans from 60 days in the past until 60 days in the future. Each little square represents 3 days time.
+                All dates and times are displayed in your local time zone (detected via JavaScript as UTC-6). Environment names are
+                displayed on the left, and hovering over a square will show you more information. For full details, click the name
+                of the environment label on the left-hand side to expand that environment's display within the grid.
+            </p>
+        </div>
+        <div class="py-2 text-transparent">
+            &nbsp;
+        </div>
+        <div id="heatmap-actual">
+            <div class="grid grid-cols-7 text-black text-lg leading-4 pb-6" id="heatmap-legend">
+                <div class="text-left">Environment Name</div>
+                <div class="text-center">-60 days<br /><span class="text-xs text-slate-500">2022-04-20</span></div>
+                <div class="text-center">-30 days<br /><span class="text-xs text-slate-500">2022-05-20</span></div>
+                <div class="text-center">Today<br /><span class="text-xs text-slate-500">2022-06-20</span></div>
+                <div class="text-center">+30 days<br /><span class="text-xs text-slate-500">2022-07-20</span></div>
+                <div class="text-center">+60 days<br /><span class="text-xs text-slate-500">2022-08-20</span></div>
+            </div>
+            <div class="grid grid-cols-7 divide-x text-sm" id="cert-label-uuid-here-should-correspond-to-database-object-somehow">
+                <div class="font-mono truncate">bosh-director-prod</div>
+                <!-- 60 days in the past -->
+                <div class="columns-10 gap-x-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing 3 days exactly (CSS framework limitation) -->
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-10">1</div>
+                    <div class="rounded bg-red-700 opacity-20">2</div>
+                    <div class="rounded bg-red-700 opacity-30">3</div>
+                    <div class="rounded bg-red-700 opacity-40">4</div>
+                    <div class="rounded bg-red-700 opacity-50">5</div>
+                    <div class="rounded bg-red-700 opacity-60">6</div>
+                    <div class="rounded bg-red-700 opacity-70">7</div>
+                    <div class="rounded bg-red-700 opacity-80">8</div>
+                    <div class="rounded bg-red-700 opacity-90">9</div>
+                </div>
+
+                <!-- 30 days ago -->
+                <div class="columns-10 gap-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing 3 days exactly (CSS framework limitation) -->
+                    <div class="rounded bg-red-700 opacity-10">1</div>
+                    <div class="rounded bg-red-700 opacity-20">2</div>
+                    <div class="rounded bg-red-700 opacity-30">3</div>
+                    <div class="rounded bg-red-700 opacity-40">4</div>
+                    <div class="rounded bg-red-700 opacity-50">5</div>
+                    <div class="rounded bg-red-700 opacity-60">6</div>
+                    <div class="rounded bg-red-700 opacity-70">7</div>
+                    <div class="rounded bg-red-700 opacity-80">8</div>
+                    <div class="rounded bg-red-700 opacity-90">9</div>
+                    <div class="rounded bg-red-700 opacity-100">DOOOOOOOOM!</div>
+                </div>
+
+                <!-- What's expiring today? -->
+                <div class="columns-12 gap-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing TWO HOUR INCREMENTS (12 * 2 = 24 hours) -->
+                    <!-- If there are any certs expiring today we need to show the user and call it out -->
+                    <!-- as blatantly, obnoxiously as possible! -->
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-100">3</div>
+                    <div class="rounded bg-red-700 opacity-100">6</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                </div>
+
+                <!-- 30 days from now -->
+                <div class="columns-10 gap-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing 3 days exactly (CSS framework limitation) -->
+                    <div class="rounded bg-red-700 opacity-10">1</div>
+                    <div class="rounded bg-red-700 opacity-20">2</div>
+                    <div class="rounded bg-red-700 opacity-30">3</div>
+                    <div class="rounded bg-red-700 opacity-40">4</div>
+                    <div class="rounded bg-red-700 opacity-50">5</div>
+                    <div class="rounded bg-red-700 opacity-60">6</div>
+                    <div class="rounded bg-red-700 opacity-70">7</div>
+                    <div class="rounded bg-red-700 opacity-80">8</div>
+                    <div class="rounded bg-red-700 opacity-90">9</div>
+                    <div class="rounded bg-red-700 opacity-100">DOOM!</div>
+                </div>
+
+                <!-- 60 days from now -->
+                <div class="columns-10 gap-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing 3 days exactly (CSS framework limitation) -->
+                    <div class="rounded bg-red-700 opacity-10">1</div>
+                    <div class="rounded bg-red-700 opacity-20">2</div>
+                    <div class="rounded bg-red-700 opacity-30">3</div>
+                    <div class="rounded bg-red-700 opacity-40">4</div>
+                    <div class="rounded bg-red-700 opacity-50">5</div>
+                    <div class="rounded bg-red-700 opacity-60">6</div>
+                    <div class="rounded bg-red-700 opacity-70">7</div>
+                    <div class="rounded bg-red-700 opacity-80">8</div>
+                    <div class="rounded bg-red-700 opacity-90">9</div>
+                    <div class="rounded bg-red-700 opacity-100">31337</div>
+                </div>
+            </div>
+            <!-- End of Row -->
+
+            <div class="grid grid-cols-7 divide-x text-sm" id="cert-label-uuid-here-should-correspond-to-database-object-somehow">
+                <div class="font-mono truncate">legacy-production</div>
+                <!-- 60 days in the past -->
+                <div class="columns-10 gap-x-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing 3 days exactly (CSS framework limitation) -->
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-10">1</div>
+                    <div class="rounded bg-red-700 opacity-20">2</div>
+                    <div class="rounded bg-red-700 opacity-30">3</div>
+                    <div class="rounded bg-red-700 opacity-40">4</div>
+                    <div class="rounded bg-red-700 opacity-50">5</div>
+                    <div class="rounded bg-red-700 opacity-60">6</div>
+                    <div class="rounded bg-red-700 opacity-70">7</div>
+                    <div class="rounded bg-red-700 opacity-80">8</div>
+                    <div class="rounded bg-red-700 opacity-90">9</div>
+                </div>
+
+                <!-- 30 days ago -->
+                <div class="columns-10 gap-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing 3 days exactly (CSS framework limitation) -->
+                    <div class="rounded bg-red-700 opacity-10">1</div>
+                    <div class="rounded bg-red-700 opacity-20">2</div>
+                    <div class="rounded bg-red-700 opacity-30">3</div>
+                    <div class="rounded bg-red-700 opacity-40">4</div>
+                    <div class="rounded bg-red-700 opacity-50">5</div>
+                    <div class="rounded bg-red-700 opacity-60">6</div>
+                    <div class="rounded bg-red-700 opacity-70">7</div>
+                    <div class="rounded bg-red-700 opacity-80">8</div>
+                    <div class="rounded bg-red-700 opacity-90">9</div>
+                    <div class="rounded bg-red-700 opacity-100">DOOOOOOOOM!</div>
+                </div>
+
+                <!-- What's expiring today? -->
+                <div class="columns-12 gap-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing TWO HOUR INCREMENTS (12 * 2 = 24 hours) -->
+                    <!-- If there are any certs expiring today we need to show the user and call it out -->
+                    <!-- as blatantly, obnoxiously as possible! -->
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-100">3</div>
+                    <div class="rounded bg-red-700 opacity-100">6</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                </div>
+
+                <!-- 30 days from now -->
+                <div class="columns-10 gap-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing 3 days exactly (CSS framework limitation) -->
+                    <div class="rounded bg-red-700 opacity-10">1</div>
+                    <div class="rounded bg-red-700 opacity-20">2</div>
+                    <div class="rounded bg-red-700 opacity-30">3</div>
+                    <div class="rounded bg-red-700 opacity-40">4</div>
+                    <div class="rounded bg-red-700 opacity-50">5</div>
+                    <div class="rounded bg-red-700 opacity-60">6</div>
+                    <div class="rounded bg-red-700 opacity-70">7</div>
+                    <div class="rounded bg-red-700 opacity-80">8</div>
+                    <div class="rounded bg-red-700 opacity-90">9</div>
+                    <div class="rounded bg-red-700 opacity-100">DOOM!</div>
+                </div>
+
+                <!-- 60 days from now -->
+                <div class="columns-10 gap-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing 3 days exactly (CSS framework limitation) -->
+                    <div class="rounded bg-red-700 opacity-10">1</div>
+                    <div class="rounded bg-red-700 opacity-20">2</div>
+                    <div class="rounded bg-red-700 opacity-30">3</div>
+                    <div class="rounded bg-red-700 opacity-40">4</div>
+                    <div class="rounded bg-red-700 opacity-50">5</div>
+                    <div class="rounded bg-red-700 opacity-60">6</div>
+                    <div class="rounded bg-red-700 opacity-70">7</div>
+                    <div class="rounded bg-red-700 opacity-80">8</div>
+                    <div class="rounded bg-red-700 opacity-90">9</div>
+                    <div class="rounded bg-red-700 opacity-100">31337</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-7 divide-x text-sm" id="cert-label-uuid-here-should-correspond-to-database-object-somehow">
+                <div class="font-mono truncate">rabbitmq-production</div>
+                <!-- 60 days in the past -->
+                <div class="columns-10 gap-x-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing 3 days exactly (CSS framework limitation) -->
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-10">1</div>
+                    <div class="rounded bg-red-700 opacity-20">2</div>
+                    <div class="rounded bg-red-700 opacity-30">3</div>
+                    <div class="rounded bg-red-700 opacity-40">4</div>
+                    <div class="rounded bg-red-700 opacity-50">5</div>
+                    <div class="rounded bg-red-700 opacity-60">6</div>
+                    <div class="rounded bg-red-700 opacity-70">7</div>
+                    <div class="rounded bg-red-700 opacity-80">8</div>
+                    <div class="rounded bg-red-700 opacity-90">9</div>
+                </div>
+
+                <!-- 30 days ago -->
+                <div class="columns-10 gap-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing 3 days exactly (CSS framework limitation) -->
+                    <div class="rounded bg-red-700 opacity-10">1</div>
+                    <div class="rounded bg-red-700 opacity-20">2</div>
+                    <div class="rounded bg-red-700 opacity-30">3</div>
+                    <div class="rounded bg-red-700 opacity-40">4</div>
+                    <div class="rounded bg-red-700 opacity-50">5</div>
+                    <div class="rounded bg-red-700 opacity-60">6</div>
+                    <div class="rounded bg-red-700 opacity-70">7</div>
+                    <div class="rounded bg-red-700 opacity-80">8</div>
+                    <div class="rounded bg-red-700 opacity-90">9</div>
+                    <div class="rounded bg-red-700 opacity-100">DOOOOOOOOM!</div>
+                </div>
+
+                <!-- What's expiring today? -->
+                <div class="columns-12 gap-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing TWO HOUR INCREMENTS (12 * 2 = 24 hours) -->
+                    <!-- If there are any certs expiring today we need to show the user and call it out -->
+                    <!-- as blatantly, obnoxiously as possible! -->
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-100">3</div>
+                    <div class="rounded bg-red-700 opacity-100">6</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                </div>
+
+                <!-- 30 days from now -->
+                <div class="columns-10 gap-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing 3 days exactly (CSS framework limitation) -->
+                    <div class="rounded bg-red-700 opacity-10">1</div>
+                    <div class="rounded bg-red-700 opacity-20">2</div>
+                    <div class="rounded bg-red-700 opacity-30">3</div>
+                    <div class="rounded bg-red-700 opacity-40">4</div>
+                    <div class="rounded bg-red-700 opacity-50">5</div>
+                    <div class="rounded bg-red-700 opacity-60">6</div>
+                    <div class="rounded bg-red-700 opacity-70">7</div>
+                    <div class="rounded bg-red-700 opacity-80">8</div>
+                    <div class="rounded bg-red-700 opacity-90">9</div>
+                    <div class="rounded bg-red-700 opacity-100">DOOM!</div>
+                </div>
+
+                <!-- 60 days from now -->
+                <div class="columns-10 gap-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing 3 days exactly (CSS framework limitation) -->
+                    <div class="rounded bg-red-700 opacity-10">1</div>
+                    <div class="rounded bg-red-700 opacity-20">2</div>
+                    <div class="rounded bg-red-700 opacity-30">3</div>
+                    <div class="rounded bg-red-700 opacity-40">4</div>
+                    <div class="rounded bg-red-700 opacity-50">5</div>
+                    <div class="rounded bg-red-700 opacity-60">6</div>
+                    <div class="rounded bg-red-700 opacity-70">7</div>
+                    <div class="rounded bg-red-700 opacity-80">8</div>
+                    <div class="rounded bg-red-700 opacity-90">9</div>
+                    <div class="rounded bg-red-700 opacity-100">31337</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-7 divide-x text-sm" id="cert-label-uuid-here-should-correspond-to-database-object-somehow">
+                <div class="font-mono truncate">staging-psql</div>
+                <!-- 60 days in the past -->
+                <div class="columns-10 gap-x-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing 3 days exactly (CSS framework limitation) -->
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-10">1</div>
+                    <div class="rounded bg-red-700 opacity-20">2</div>
+                    <div class="rounded bg-red-700 opacity-30">3</div>
+                    <div class="rounded bg-red-700 opacity-40">4</div>
+                    <div class="rounded bg-red-700 opacity-50">5</div>
+                    <div class="rounded bg-red-700 opacity-60">6</div>
+                    <div class="rounded bg-red-700 opacity-70">7</div>
+                    <div class="rounded bg-red-700 opacity-80">8</div>
+                    <div class="rounded bg-red-700 opacity-90">9</div>
+                </div>
+
+                <!-- 30 days ago -->
+                <div class="columns-10 gap-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing 3 days exactly (CSS framework limitation) -->
+                    <div class="rounded bg-red-700 opacity-10">1</div>
+                    <div class="rounded bg-red-700 opacity-20">2</div>
+                    <div class="rounded bg-red-700 opacity-30">3</div>
+                    <div class="rounded bg-red-700 opacity-40">4</div>
+                    <div class="rounded bg-red-700 opacity-50">5</div>
+                    <div class="rounded bg-red-700 opacity-60">6</div>
+                    <div class="rounded bg-red-700 opacity-70">7</div>
+                    <div class="rounded bg-red-700 opacity-80">8</div>
+                    <div class="rounded bg-red-700 opacity-90">9</div>
+                    <div class="rounded bg-red-700 opacity-100">DOOOOOOOOM!</div>
+                </div>
+
+                <!-- What's expiring today? -->
+                <div class="columns-12 gap-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing TWO HOUR INCREMENTS (12 * 2 = 24 hours) -->
+                    <!-- If there are any certs expiring today we need to show the user and call it out -->
+                    <!-- as blatantly, obnoxiously as possible! -->
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-100">3</div>
+                    <div class="rounded bg-red-700 opacity-100">6</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                    <div class="rounded bg-red-700 opacity-0">0</div>
+                </div>
+
+                <!-- 30 days from now -->
+                <div class="columns-10 gap-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing 3 days exactly (CSS framework limitation) -->
+                    <div class="rounded bg-red-700 opacity-10">1</div>
+                    <div class="rounded bg-red-700 opacity-20">2</div>
+                    <div class="rounded bg-red-700 opacity-30">3</div>
+                    <div class="rounded bg-red-700 opacity-40">4</div>
+                    <div class="rounded bg-red-700 opacity-50">5</div>
+                    <div class="rounded bg-red-700 opacity-60">6</div>
+                    <div class="rounded bg-red-700 opacity-70">7</div>
+                    <div class="rounded bg-red-700 opacity-80">8</div>
+                    <div class="rounded bg-red-700 opacity-90">9</div>
+                    <div class="rounded bg-red-700 opacity-100">DOOM!</div>
+                </div>
+
+                <!-- 60 days from now -->
+                <div class="columns-10 gap-1 text-xs text-center text-transparent pl-2 pr-2 truncate">
+                    <!-- Each div is a column representing 3 days exactly (CSS framework limitation) -->
+                    <div class="rounded bg-red-700 opacity-10">1</div>
+                    <div class="rounded bg-red-700 opacity-20">2</div>
+                    <div class="rounded bg-red-700 opacity-30">3</div>
+                    <div class="rounded bg-red-700 opacity-40">4</div>
+                    <div class="rounded bg-red-700 opacity-50">5</div>
+                    <div class="rounded bg-red-700 opacity-60">6</div>
+                    <div class="rounded bg-red-700 opacity-70">7</div>
+                    <div class="rounded bg-red-700 opacity-80">8</div>
+                    <div class="rounded bg-red-700 opacity-90">9</div>
+                    <div class="rounded bg-red-700 opacity-100">31337</div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Heatmap -->
+    </div>
+</body>
+</html>
