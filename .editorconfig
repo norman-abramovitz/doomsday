@@ -6,6 +6,10 @@
 #
 # See editorconfig.org for more details.
 #
+
+#
+# Specifies that this directory is the root of the project
+#
 root = true
 
 #
@@ -16,6 +20,16 @@ end_of_line = lf
 insert_final_newline = true
 charset = utf-8
 trim_trailing_whitespace = true
+
+#
+# Below I've outlined multiple groups of types of files that are mostly related
+# and likely will want to have the same settings for each type. In each case I've
+# *tried* to replicate the pattern that already exists in this repo, but there are
+# inconsistencies in some places (which is why EditorConfig exists).
+#
+# While some of these could be combined for "DRY" purposes, I have them separated
+# so that each can be tweaked easily without impacting the other groups.
+#
 
 #
 # Specifically for HTML and friends
